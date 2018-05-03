@@ -36,7 +36,10 @@ class MainWindow(qw.QMainWindow):
         action.triggered.connect(self.method)   
         
     def method(self):
-        print('pushed')
+#        pass
+        d = Dialog()
+        if d.exec_():
+            print(True)
         
 class Widget(qw.QWidget):
     def __init__(self,*args,**kwargs):
@@ -44,7 +47,20 @@ class Widget(qw.QWidget):
         layout = qw.QHBoxLayout()
         layout.addWidget(qw.QLabel('Main Widget'))
         self.setLayout(layout)
-    
+
+class Dialog(qw.QDialog):
+    def __init__(self,*args,**kwargs):
+        super(Dialog,self).__init__(*args,**kwargs)
+        self.b1 = qw.QPushButton('ok')
+        self.b2 = qw.QPushButton('cancel')
+        layout = qw.QHBoxLayout()
+        layout.addWidget(self.b1)
+        layout.addWidget(self.b2)
+        self.setLayout(layout)
+        
+        self.b1.clicked.connect(self.accept)
+        self.b2.clicked.connect(self.reject)
+
 if __name__=='__main__':
     
     app = qw.QApplication(sys.argv)
