@@ -10,7 +10,7 @@ import sys
 import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 import PyQt5.QtWidgets as qw
-#import numpy
+import numpy
 #import numpy.linalg
 #import scipy
 #import scipy.optimize
@@ -20,12 +20,8 @@ import PyQt5.QtWidgets as qw
 #from scipy.spatial import Delaunay
 #import scipy.spatial.ckdtree
 #import sympy
+from matplotlib_widget import GraphView
 
-def build_main():
-    main_window = MainWindow()
-    widget = Widget()
-    main_window.setCentralWidget(widget)
-    return main_window
     
 class MainWindow(qw.QMainWindow):
     def __init__(self,*args,**kwargs):
@@ -44,9 +40,21 @@ class MainWindow(qw.QMainWindow):
 class Widget(qw.QWidget):
     def __init__(self,*args,**kwargs):
         super(Widget,self).__init__(*args,**kwargs)
-        layout = qw.QHBoxLayout()
+        self.graph = GraphView()
+        self.b1 = qw.QPushButton('ok')
+        layout = qw.QVBoxLayout()
         layout.addWidget(qw.QLabel('Main Widget'))
+        layout.addWidget(self.graph)
+        layout.addWidget(self.b1)
+        
         self.setLayout(layout)
+        self.b1.clicked.connect(self.method)
+        
+    def method(self):
+#        pass
+        d = Dialog()
+        if d.exec_():
+            print(True)
 
 class Dialog(qw.QDialog):
     def __init__(self,*args,**kwargs):
@@ -64,7 +72,14 @@ class Dialog(qw.QDialog):
 if __name__=='__main__':
     
     app = qw.QApplication(sys.argv)
-    main_window = build_main()
+    main_window = MainWindow()
+    widget = Widget()
+#    widget = GraphView()
+    t = numpy.r_[0:100]
+    y = numpy.sin(t)
+    widget.graph.plot(t,y)
+    main_window.setCentralWidget(widget)
+    
     main_window.show()
     sys.exit(app.exec_())
     
