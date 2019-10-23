@@ -5,20 +5,21 @@ Created on Mon Apr 15 08:20:22 2019
 @author: daukes
 """
 
-import qt
-import qt.QtCore as qc
-import qt.QtGui as qg
+import PyQt5
+import PyQt5.QtCore as qc
+import PyQt5.QtGui as qg
+import PyQt5.QtWidgets as qw
 import matplotlib
 import matplotlib.pyplot as plt
 plt.ion()
-matplotlib.rcParams['backend.qt5']=qt.loaded
+matplotlib.rcParams['backend']='Qt5Agg'
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 #import numpy
 
 
-class GraphView(qg.QWidget):
+class GraphView(qw.QWidget):
     def __init__(self, name='Name', title='Title', graph_title='Graph Title', parent = None):
         super(GraphView, self).__init__(parent)
 
@@ -32,7 +33,7 @@ class GraphView(qg.QWidget):
         self.canvas = FigureCanvas(self.fig)
         self.canvas.setParent(self)
         self.toolbar = NavigationToolbar(self.canvas,self)
-        self.layout = qg.QVBoxLayout()
+        self.layout = qw.QVBoxLayout()
         self.layout.addWidget(self.toolbar)
         self.layout.addWidget(self.canvas)
         self.layout.setStretchFactor(self.canvas, 1)
