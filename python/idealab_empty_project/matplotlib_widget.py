@@ -5,9 +5,9 @@ Created on Mon Apr 15 08:20:22 2019
 @author: daukes
 """
 
-import qt
-import qt.QtCore as qc
-import qt.QtGui as qg
+import PyQt5 as qt
+import PyQt5.QtCore as qc
+import PyQt5.QtGui as qg
 import matplotlib
 import matplotlib.pyplot as plt
 plt.ion()
