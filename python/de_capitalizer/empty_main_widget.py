@@ -10,7 +10,7 @@ import sys
 import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 import PyQt5.QtWidgets as qw
-import numpy
+#import numpy
 import re
 #import numpy.linalg
 #import scipy
@@ -21,7 +21,7 @@ import re
 #from scipy.spatial import Delaunay
 #import scipy.spatial.ckdtree
 #import sympy
-from matplotlib_widget import GraphView
+#from de_capitalizer.matplotlib_widget import GraphView
 
 unimportant_words = ['the','a','an','for']
 
@@ -111,18 +111,21 @@ class Dialog(qw.QDialog):
         self.b1.clicked.connect(self.accept)
         self.b2.clicked.connect(self.reject)
 
-if __name__=='__main__':
-    
-    app = qw.QApplication(sys.argv)
-    main_window = MainWindow()
-    widget = Widget()
-    tw= TextWidget()
-#    widget = GraphView()
-    t = numpy.r_[0:100]
-    y = numpy.sin(t)
-    widget.graph.plot(t,y)
-    main_window.setCentralWidget(tw)
-    
-    main_window.show()
-#    sys.exit(app.exec_())
-    
+#def run():
+
+
+#if __name__=='__main__':
+#    app = qw.QApplication(sys.argv)
+#    app.setWindowIcon(qg.QIcon('files/logo_4_1_icon.ico'))
+#
+#    main_window = MainWindow()
+#    #    widget = Widget()
+#    tw= TextWidget()
+#    ##    widget = GraphView()
+#    #    t = numpy.r_[0:100]
+#    #    y = numpy.sin(t)
+#    #    widget.graph.plot(t,y)
+#    main_window.setCentralWidget(tw)
+#    main_window.show()
+#    app.exec_()
+#    sys.exit()    
