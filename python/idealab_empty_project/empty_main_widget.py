@@ -11,6 +11,7 @@ import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 import PyQt5.QtWidgets as qw
 import numpy
+import re
 #import numpy.linalg
 #import scipy
 #import scipy.optimize
@@ -20,7 +21,9 @@ import numpy
 #from scipy.spatial import Delaunay
 #import scipy.spatial.ckdtree
 #import sympy
-from matplotlib_widget import GraphView
+from idealab_empty_project.matplotlib_widget import GraphView
+
+unimportant_words = ['the','a','an','for']
 
     
 class MainWindow(qw.QMainWindow):
@@ -36,6 +39,45 @@ class MainWindow(qw.QMainWindow):
         d = Dialog()
         if d.exec_():
             print(True)
+
+def test(in1):
+    in1 = in1.group()
+    out1 = in1[:-1]+in1[-1].upper()
+#    print(in1)
+#    out1 = 'b'
+    return out1
+
+class TextWidget(qw.QWidget):
+    def __init__(self,*args,**kwargs):
+        super(TextWidget,self).__init__(*args,**kwargs)
+        self.t1 = qw.QTextEdit('input')
+#        self.t2 = qw.QLineEdit('output')
+#        self.t3 = qw.QLineEdit('asdf')
+        self.p1 = qw.QPushButton('Capitalize')
+        self.p2 = qw.QPushButton('Decapitalize')
+        self.p3 = qw.QPushButton('Capitalize Important Words')
+        layout = qw.QVBoxLayout()
+        layout.addWidget(self.t1)
+        layout.addWidget(self.p1)
+        layout.addWidget(self.p2)
+        layout.addWidget(self.p3)
+#        layout.addWidget(self.t2)
+#        layout.addWidget(self.t3)
+        self.setLayout(layout)
+        self.p1.pressed.connect(self.cap)
+        self.p2.pressed.connect(self.decap)
+        self.p3.pressed.connect(self.wordcap)
+    def cap(self):
+        self.t1.setPlainText(self.t1.toPlainText().upper())
+    def decap(self):
+        self.t1.setPlainText(self.t1.toPlainText().lower())
+    def wordcap(self):
+        t = self.t1.toPlainText()
+        t = t.lower()
+        result = re.sub('\s[a-z]',test,t)
+        result=result[0].upper()+result[1:]
+        self.t1.setPlainText(result)
+#        print(items)
         
 class Widget(qw.QWidget):
     def __init__(self,*args,**kwargs):
@@ -69,17 +111,21 @@ class Dialog(qw.QDialog):
         self.b1.clicked.connect(self.accept)
         self.b2.clicked.connect(self.reject)
 
-if __name__=='__main__':
-    
-    app = qw.QApplication(sys.argv)
-    main_window = MainWindow()
-    widget = Widget()
-#    widget = GraphView()
-    t = numpy.r_[0:100]
-    y = numpy.sin(t)
-    widget.graph.plot(t,y)
-    main_window.setCentralWidget(widget)
-    
-    main_window.show()
-    sys.exit(app.exec_())
-    
+#def run():
+
+
+#if __name__=='__main__':
+#    app = qw.QApplication(sys.argv)
+#    app.setWindowIcon(qg.QIcon('files/logo_4_1_icon.ico'))
+#
+#    main_window = MainWindow()
+#    #    widget = Widget()
+#    tw= TextWidget()
+#    ##    widget = GraphView()
+#    #    t = numpy.r_[0:100]
+#    #    y = numpy.sin(t)
+#    #    widget.graph.plot(t,y)
+#    main_window.setCentralWidget(tw)
+#    main_window.show()
+#    app.exec_()
+#    sys.exit()    
