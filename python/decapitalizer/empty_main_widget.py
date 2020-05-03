@@ -21,7 +21,7 @@ import re
 #from scipy.spatial import Delaunay
 #import scipy.spatial.ckdtree
 #import sympy
-#from de_capitalizer.matplotlib_widget import GraphView
+#from decapitalizer.matplotlib_widget import GraphView
 
 unimportant_words = ['the','a','an','for']
 
@@ -51,6 +51,7 @@ class TextWidget(qw.QWidget):
     def __init__(self,*args,**kwargs):
         super(TextWidget,self).__init__(*args,**kwargs)
         self.t1 = qw.QTextEdit('input')
+        self.t1.setAcceptRichText(False)
 #        self.t2 = qw.QLineEdit('output')
 #        self.t3 = qw.QLineEdit('asdf')
         self.p1 = qw.QPushButton('Capitalize')
@@ -114,18 +115,18 @@ class Dialog(qw.QDialog):
 #def run():
 
 
-#if __name__=='__main__':
-#    app = qw.QApplication(sys.argv)
-#    app.setWindowIcon(qg.QIcon('files/logo_4_1_icon.ico'))
-#
-#    main_window = MainWindow()
-#    #    widget = Widget()
-#    tw= TextWidget()
-#    ##    widget = GraphView()
-#    #    t = numpy.r_[0:100]
-#    #    y = numpy.sin(t)
-#    #    widget.graph.plot(t,y)
-#    main_window.setCentralWidget(tw)
-#    main_window.show()
-#    app.exec_()
-#    sys.exit()    
+if __name__=='__main__':
+    app = qw.QApplication(sys.argv)
+    app.setWindowIcon(qg.QIcon('files/logo_4_1_icon.ico'))
+
+    main_window = MainWindow()
+    #    widget = Widget()
+    tw= TextWidget()
+    ##    widget = GraphView()
+    #    t = numpy.r_[0:100]
+    #    y = numpy.sin(t)
+    #    widget.graph.plot(t,y)
+    main_window.setCentralWidget(tw)
+    main_window.show()
+    app.exec_()
+    sys.exit()    

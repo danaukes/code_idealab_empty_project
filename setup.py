@@ -9,7 +9,7 @@ Please see LICENSE for full license.
 from cx_Freeze import setup, Executable
 import sys
 import shutil
-import de_capitalizer
+import decapitalizer
 import os
 import importlib
 import idealab_tools.setup_tools as st
@@ -17,14 +17,14 @@ import idealab_tools.setup_tools as st
 
 shutil.rmtree("build", ignore_errors=True)
 shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree('de_capitalizer.egg-info', ignore_errors=True)
+shutil.rmtree('decapitalizer.egg-info', ignore_errors=True)
 
 packages = []
-packages.append('de_capitalizer')
+packages.append('decapitalizer')
 #packages.append('Qt5')
 
 package_data = {}
-package_data['de_capitalizer'] = ['files/*']
+package_data['decapitalizer'] = ['files/*']
 
 includes = []
 includes.append('PyQt5')
@@ -76,7 +76,7 @@ bdist_msi_options['upgrade_code']= '6576a015-5ff7-4cf8-bc8c-297b139cf5ae'
 
 exe = Executable(
    # what to build
-   script = "runme.py", # the name of your main python script goes here 
+   script = "python/decapitalizer/main_app.py", # the name of your main python script goes here 
    initScript = None,
    base = "Win32GUI", # if creating a GUI instead of a console app, type "Win32GUI", otherwise, None
    #targetName = "Hello World.exe", # this is the name of the executable file
@@ -84,9 +84,9 @@ exe = Executable(
    #compress = False,
    #appendScriptToExe = True,
    #appendScriptToLibrary = True,
-   icon = 'python/de_capitalizer/files/logo_4_1_icon.ico', # if you want to use an icon file, specify the file name here
+   icon = 'python/decapitalizer/files/logo_4_1_icon.ico', # if you want to use an icon file, specify the file name here
    shortcutDir="ProgramMenuFolder",
-   shortcutName='de_capitalizer',
+   shortcutName='decapitalizer',
 )
         
 #executables = []
@@ -98,7 +98,7 @@ setup_options['build_exe']=build_exe_options
 setup_options['bdist_msi']=bdist_msi_options
 
 setup_kwargs = {}
-setup_kwargs['name']='de-capitalizer'
+setup_kwargs['name']='decapitalizer'
 setup_kwargs['version']='0.0.1'
 setup_kwargs['classifiers']=['Programming Language :: Python','Programming Language :: Python :: 3']   
 setup_kwargs['description']='Empty QT Project developed by the IDEAlab.'
@@ -107,7 +107,7 @@ setup_kwargs['author_email']='danaukes@gmail.com'
 #setup_kwargs['url']='https://github.com/idealabasu/code_idealab_tools.git'
 setup_kwargs['license']='MIT'
 setup_kwargs['packages']=packages
-setup_kwargs['package_dir']={'de_capitalizer' : 'python/de_capitalizer'}
+setup_kwargs['package_dir']={'decapitalizer' : 'python/decapitalizer'}
 setup_kwargs['package_data'] = package_data
 #setup_kwargs['install_requires']=[]
 setup_kwargs['options'] = setup_options

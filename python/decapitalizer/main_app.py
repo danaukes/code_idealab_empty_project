@@ -10,11 +10,11 @@ import sys
 import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 import PyQt5.QtWidgets as qw
-import de_capitalizer
-import de_capitalizer.empty_main_widget as de
+import decapitalizer
+import decapitalizer.empty_main_widget as de
 
 app = qw.QApplication(sys.argv)
-app.setWindowIcon(qg.QIcon('python/de_capitalizer/files/logo_4_1_icon.ico'))
+app.setWindowIcon(qg.QIcon('files/logo_4_1_icon.ico'))
 
 main_window = de.MainWindow()
 #    widget = Widget()

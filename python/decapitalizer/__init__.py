@@ -5,7 +5,7 @@ Created on Wed Mar 05 09:27:46 2014
 @author: danb0b
 """
 
-import de_capitalizer.empty_main_widget
+import decapitalizer.empty_main_widget
 
 import sys
 import os
