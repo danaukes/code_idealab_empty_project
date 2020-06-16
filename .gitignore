@@ -1,9 +1,5 @@
 /build/*
 /build/*
 /dist/*
-/idealab_empty_project.egg-info/*
-/idealab_empty_project.egg-info/PKG-INFO
-/idealab_empty_project.egg-info/requires.txt
-/idealab_empty_project.egg-info/SOURCES.txt
-/idealab_empty_project.egg-info/top_level.txt
+/empty_gui.egg-info/*
 *.pyc

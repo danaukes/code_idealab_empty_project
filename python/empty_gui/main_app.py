@@ -10,11 +10,11 @@ import sys
 import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc
 import PyQt5.QtWidgets as qw
-import idealab_empty_project
-import idealab_empty_project.empty_main_widget as de
+import empty_gui
+import empty_gui.empty_main_widget as de
 
 app = qw.QApplication(sys.argv)
-app.setWindowIcon(qg.QIcon('python/idealab_empty_project/files/logo_4_1_icon.ico'))
+app.setWindowIcon(qg.QIcon('python/empty_gui/files/logo_4_1_icon.ico'))
 
 main_window = de.MainWindow()
 #    widget = Widget()

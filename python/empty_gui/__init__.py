@@ -5,11 +5,10 @@ Created on Wed Mar 05 09:27:46 2014
 @author: danb0b
 """
 
-import idealab_empty_project.empty_main_widget
+import empty_gui.empty_main_widget
 
 import sys
 import os
-import idealab_tools.setup_tools as st
 import traceback
 import PyQt5.QtGui as qg
 import PyQt5.QtCore as qc

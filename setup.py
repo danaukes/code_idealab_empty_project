@@ -9,22 +9,21 @@ Please see LICENSE for full license.
 from cx_Freeze import setup, Executable
 import sys
 import shutil
-import idealab_empty_project
 import os
 import importlib
 import idealab_tools.setup_tools as st
+sys.path.append('./python')
 
 
 shutil.rmtree("build", ignore_errors=True)
 shutil.rmtree("dist", ignore_errors=True)
-shutil.rmtree('idealab_empty_project.egg-info', ignore_errors=True)
+shutil.rmtree('empty_gui.egg-info', ignore_errors=True)
 
 packages = []
-packages.append('idealab_empty_project')
-#packages.append('Qt5')
+packages.append('empty_gui')
 
 package_data = {}
-package_data['idealab_empty_project'] = ['files/*']
+package_data['empty_gui'] = ['files/*']
 
 includes = []
 includes.append('PyQt5')
@@ -57,9 +56,14 @@ zip_includes = []
 include_files = []
 include_files.extend(st.include_entire_directory(st.fix(st.python_installed_directory,'Library/plugins/platforms'),''))
 #include_files.extend(st.include_entire_directory(st.fix(st.python_installed_directory,'Library/bin'),''))
-include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Widgets.dll'),'Library/bin/Qt5Widgets.dll'))
-include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Core.dll'),'Library/bin/Qt5Core.dll'))
-include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Gui.dll'),'Library/bin/Qt5Gui.dll'))
+# regular python
+# include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Widgets.dll'),'Library/bin/Qt5Widgets.dll'))
+# include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Core.dll'),'Library/bin/Qt5Core.dll'))
+# include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Gui.dll'),'Library/bin/Qt5Gui.dll'))
+#anaconda python
+include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Widgets_conda.dll'),'Library/bin/Qt5Widgets_conda.dll'))
+include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Core_conda.dll'),'Library/bin/Qt5Core_conda.dll'))
+include_files.append((st.fix(st.python_installed_directory,'Library/bin/Qt5Gui_conda.dll'),'Library/bin/Qt5Gui_conda.dll'))
 
 build_exe_options = {}
 build_exe_options['packages']=packages
@@ -76,7 +80,7 @@ bdist_msi_options['upgrade_code']= '6576a015-5ff7-4cf8-bc8c-297b139cf5ae'
 
 exe = Executable(
    # what to build
-   script = "runme.py", # the name of your main python script goes here 
+   script = "python/empty_gui/main_app.py", # the name of your main python script goes here 
    initScript = None,
    base = "Win32GUI", # if creating a GUI instead of a console app, type "Win32GUI", otherwise, None
    #targetName = "Hello World.exe", # this is the name of the executable file
@@ -84,9 +88,9 @@ exe = Executable(
    #compress = False,
    #appendScriptToExe = True,
    #appendScriptToLibrary = True,
-   icon = 'python/idealab_empty_project/files/logo_4_1_icon.ico', # if you want to use an icon file, specify the file name here
+   icon = 'python/empty_gui/files/logo_4_1_icon.ico', # if you want to use an icon file, specify the file name here
    shortcutDir="ProgramMenuFolder",
-   shortcutName='idealab_empty_project',
+   shortcutName='empty_gui',
 )
         
 #executables = []
@@ -98,18 +102,18 @@ setup_options['build_exe']=build_exe_options
 setup_options['bdist_msi']=bdist_msi_options
 
 setup_kwargs = {}
-setup_kwargs['name']='idealab_empty_project'
+setup_kwargs['name']='empty_gui'
 setup_kwargs['version']='0.0.1'
 setup_kwargs['classifiers']=['Programming Language :: Python','Programming Language :: Python :: 3']   
-setup_kwargs['description']='Empty QT Project developed by the IDEAlab.'
+setup_kwargs['description']='Empty QT Project developed by Dan Aukes.'
 setup_kwargs['author']='Dan Aukes'
 setup_kwargs['author_email']='danaukes@gmail.com'
-#setup_kwargs['url']='https://github.com/idealabasu/code_idealab_tools.git'
+setup_kwargs['url']=''
 setup_kwargs['license']='MIT'
 setup_kwargs['packages']=packages
-setup_kwargs['package_dir']={'idealab_empty_project' : 'python/idealab_empty_project'}
+setup_kwargs['package_dir']={'empty_gui' : 'python/empty_gui'}
 setup_kwargs['package_data'] = package_data
-#setup_kwargs['install_requires']=[]
+setup_kwargs['install_requires']=[]
 setup_kwargs['options'] = setup_options
 setup_kwargs['executables'] = [exe]
 

@@ -21,7 +21,7 @@ import re
 #from scipy.spatial import Delaunay
 #import scipy.spatial.ckdtree
 #import sympy
-from idealab_empty_project.matplotlib_widget import GraphView
+from empty_gui.matplotlib_widget import GraphView
 
 unimportant_words = ['the','a','an','for']
 
